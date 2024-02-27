@@ -1,0 +1,10 @@
+.link{
+    text-decoration: none;
+    color: #1a535c;
+}
+.navbar{
+    display: 'flex';
+    align-items: 'center'; 
+    text-align: 'center';
+    justify-content: 'right'
+}
