@@ -13,3 +13,8 @@
 .error{
     color: red;
 }
+
+.profilePosts img{
+    height: 20vh;
+    width: 20vw;
+}
