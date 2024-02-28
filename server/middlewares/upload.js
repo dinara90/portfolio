@@ -1,23 +1,30 @@
 require("dotenv").config();
+const path = require("path");
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
 
-const storage = new GridFsStorage({
-  url: process.env.DB_URL,
-  options: { useNewUrlParser: true, useUnifiedTopology: true },
-  file: (req, file) => {
-    const match = ["image/png", "image/jpeg"];
-
-    if (match.indexOf(file.mimetype) === -1) {
-      const filename = `${Date.now()}-any-name-${file.originalname}`;
-      return filename;
-    }
-
-    return {
-      bucketName: "photos",
-      filename: `${Date.now()}-any-name-${file.originalname}`,
-    };
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    let ext = path.extname(file.originalname);
+    cb(null, Date.now() + ext);
   },
 });
 
-module.exports = multer({ storage });
+var upload = multer({
+  storage: storage,
+
+  fileFilter: function (req, file, callback) {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg") {
+      callback(null, true);
+    } else {
+      console.log("only jpg & png file supported!");
+      callback(null, false);
+    }
+  },
+  limits: {
+    filesize: 1024 * 1024 * 2,
+  },
+});
+module.exports = upload;

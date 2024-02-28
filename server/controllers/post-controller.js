@@ -3,27 +3,23 @@ const { validationResult } = require("express-validator");
 const ApiError = require("../exceptions/api-error");
 const postService = require("../service/post-service");
 
-class UserController {
+class postController {
   async create(req, res, next) {
     try {
-      const { title, content, images } = req.body;
-      const userData = await postService.createPost(title, content, images);
+      const title = req.body.title;
+      const content = req.body.content;
+      let path = "";
+      req.files.forEach(function (files, index, arr) {
+        path = path + files.path + ",";
+      });
+      console.log(title + content);
+      path = path.substring(0, path.lastIndexOf(","));
+      const userData = await postService.createPost(title, content, path);
       return res.json(userData);
     } catch (e) {
       next(e);
     }
   }
-
-  // async logout(req, res, next) {
-  //   try {
-  //     const { refreshToken } = req.cookies;
-  //     const token = await userService.logout(refreshToken);
-  //     res.clearCookie("refreshToken");
-  //     return res.json(token);
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // }
 
   async getPosts(req, res, next) {
     try {
@@ -35,4 +31,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+module.exports = new postController();

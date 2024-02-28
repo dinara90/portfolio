@@ -33,9 +33,8 @@ const Data2: FC = () => {
 
     return (
         <div className={'App'}>
-                    <AccountMenu/>
-
-            {chartData.coins && (
+            <AccountMenu/>
+            {/* {chartData.coins && (
                 <Bar
                     data={{
                         labels: chartData.coins.map((coin: any) => coin.name),
@@ -81,7 +80,7 @@ const Data2: FC = () => {
                         },
                     }}
                 />
-            )}
+            )} */}
         </div>
     );
 };

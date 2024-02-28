@@ -1,0 +1,15 @@
+.uploadForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.uploadForm input{
+    height: 5vh;
+  width: 40vw;
+  border: 1px solid rgba(94, 91, 91, 0.63);
+  border-radius: 0.5vw;
+  margin: 1vh 0;
+}
+.error{
+    color: red;
+}

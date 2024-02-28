@@ -5,15 +5,14 @@ import './data.css';
 import AccountMenu from '../../components/menu/menu'
 
 
-export const Data1 = () => {
-    const [chartData, setChartData] = useState({});
-    const [employeeSalary, setEmployeeSalary] = useState([]);
-    const [employeeAge, setEmployeeAge] = useState([]);
-
+const Data1: FC = () => {
+    const [chartData, setChartData] = useState<any>({});
+    const [employeeSalary, setEmployeeSalary] = useState<number[]>([]);
+    const [employeeAge, setEmployeeAge] = useState<number[]>([]);
 
     const chart = () => {
-        let empSal = [];
-        let empAge = [];
+        let empSal: number[] = [];
+        let empAge: number[] = [];
         axios
             .get("http://dummy.restapiexample.com/api/v1/employees")
             .then(res => {
@@ -43,12 +42,13 @@ export const Data1 = () => {
     useEffect(() => {
         chart();
     }, []);
+
     return (
         <div className="App">
+            <AccountMenu/>
             <h1>Employee Data</h1>
-            <div>
-                <Line
-                    data={chartData}
+            {/* <div>
+                <Line data={chartData}
                     options={{
                         responsive: true,
                         title: { text: "THICCNESS SCALE", display: true },
@@ -73,10 +73,12 @@ export const Data1 = () => {
                                 }
                             ]
                         }
+                        
                     }}
                 />
-            </div>
-
+            </div> */}
         </div>
     );
 };
+
+export default Data1;

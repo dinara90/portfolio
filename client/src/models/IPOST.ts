@@ -7,6 +7,6 @@ export interface IPost{
         en: string;
         kz: string;
     }
-    images: [];
+    images: string;
     registrationDate: string;
 }

@@ -2,14 +2,14 @@ const { Schema, model } = require("mongoose");
 
 const PostSchema = new Schema({
   title: {
-    en: { type: String, required: true },
-    kz: { type: String, required: true },
+    en: { type: String },
+    kz: { type: String },
   },
   content: {
-    en: { type: String, required: true },
-    kz: { type: String, required: true },
+    en: { type: String },
+    kz: { type: String },
   },
-  images: [{ type: String, required: true }],
+  images: { type: String, required: true },
   registrationDate: { type: String, required: true },
 });
 

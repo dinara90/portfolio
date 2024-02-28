@@ -31,23 +31,13 @@ const Profile: FC = () => {
       <h1>Welcome {store.user.username}</h1>
       {posts.map(post=>
       <div>
-        {post.images.map(img=>
+        {post.images.split(",").map(img=>
           <Carousel>
             <Carousel.Item>
-              <img src = {img}></img>
+              <img src = {`C:\\Users\\User\\Desktop\\Code\\finalPortfolio\\server\\${img}`} height={10}></img>
           </Carousel.Item>
         </Carousel>   
         )}
-        { lang == 'en' ?
-        <div>
-      <h3>{post.title.en}</h3>
-      <p>{post.content.en}</p>  
-      </div>
-      : <div>
-      <h3>{post.title.kz}</h3>
-      <p>{post.content.kz}</p>  
-      </div>
-        }
       </div>
             )}
       

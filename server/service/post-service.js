@@ -9,6 +9,7 @@ class PostService {
     if (candidate) {
       throw ApiError.BadRequest(`Post with title: ${title} already exists`);
     }
+
     const ts = Date.now();
     const date_ob = new Date(ts);
     const date = date_ob.getDate();
@@ -18,12 +19,16 @@ class PostService {
     const minute = date_ob.getMinutes();
     const registrationDate =
       date + "-" + month + "-" + year + " " + hour + ":" + minute;
+
+    console.log(title, content); // Ensure that title and content are received correctly
+
     const post = await postsModel.create({
-      title,
-      content,
-      images,
-      registrationDate,
+      title: title, // Pass title property correctly
+      content: content, // Pass content property correctly
+      // images: images,
+      registrationDate: registrationDate,
     });
+
     return post;
   }
 
