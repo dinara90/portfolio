@@ -5,6 +5,5 @@
 /server/node_modules
 
 #storage
-/server/uploads
 
 /server/.env
