@@ -21,6 +21,7 @@ router.post("/logout", userController.logout);
 router.get("/refresh", userController.refresh);
 router.get("/users", authMiddleware, userController.getUsers);
 router.get("/posts", authMiddleware, postController.getPosts);
+router.post("/deletePost", authMiddleware, postController.deletePost);
 router.post("/posts", upload.array("images"), postController.create);
 
 module.exports = router;

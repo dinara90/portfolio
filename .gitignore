@@ -4,4 +4,7 @@
 /client/node_modules
 /server/node_modules
 
+#storage
+/server/uploads
+
 /server/.env

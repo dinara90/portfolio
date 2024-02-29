@@ -5,11 +5,16 @@ const postsModel = require("../models/posts-model");
 
 class PostService {
   async createPost(title, content, images) {
-    const candidate = await postsModel.findOne({ title });
+    // Convert title and content from JSON strings to objects
+    console.log(title + content);
+    const parsedTitle = JSON.parse(title);
+    const parsedContent = JSON.parse(content);
+    const candidate = await postsModel.findOne({ title: parsedTitle });
     if (candidate) {
-      throw ApiError.BadRequest(`Post with title: ${title} already exists`);
+      throw ApiError.BadRequest(
+        `Post with title: ${parsedTitle.en} already exists`
+      );
     }
-
     const ts = Date.now();
     const date_ob = new Date(ts);
     const date = date_ob.getDate();
@@ -19,23 +24,21 @@ class PostService {
     const minute = date_ob.getMinutes();
     const registrationDate =
       date + "-" + month + "-" + year + " " + hour + ":" + minute;
-
-    console.log(title, content); // Ensure that title and content are received correctly
-
+    console.log(parsedTitle.en);
     const post = await postsModel.create({
-      title: title, // Pass title property correctly
-      content: content, // Pass content property correctly
-      // images: images,
+      title: parsedTitle,
+      content: parsedContent,
+      images: images,
       registrationDate: registrationDate,
     });
 
     return post;
   }
 
-  // async logout(refreshToken) {
-  //   const token = await tokenService.removeToken(refreshToken);
-  //   return token;
-  // }
+  async deletePost(title) {
+    const post = await postsModel.deleteOne(title);
+    return post;
+  }
 
   async getPosts() {
     const posts = await postsModel.find();
