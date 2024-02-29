@@ -27,14 +27,17 @@ const AdminPage: FC = () => {
 
     if (!Object.values(newInputErrors).some(error => error)) {
       const formData = new FormData();
-      formData.append('title', JSON.stringify({
+      const titleData = {
         en: titleEn.current!.value.trim(),
         kz: titleKz.current!.value.trim(),
-      }));
-      formData.append('content', JSON.stringify({
+      };
+      const contentData = {
         en: contentEn.current!.value.trim(),
         kz: contentKz.current!.value.trim(),
-      }));
+      };
+  
+      formData.append('title', JSON.stringify(titleData));
+      formData.append('content', JSON.stringify(contentData));
       // Append files to FormData
       if (fileInput.current?.files) {
         for (let i = 0; i < fileInput.current.files.length; i++) {

@@ -12,10 +12,19 @@ class postController {
       req.files.forEach(function (files, index, arr) {
         path = path + files.path + ",";
       });
-      console.log(title + content);
       path = path.substring(0, path.lastIndexOf(","));
       const userData = await postService.createPost(title, content, path);
       return res.json(userData);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async deletePost(req, res, next) {
+    try {
+      const { title } = req.body.title;
+      const posts = await postService.deletePost(title);
+      return res.json(posts);
     } catch (e) {
       next(e);
     }

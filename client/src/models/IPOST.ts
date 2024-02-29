@@ -9,4 +9,5 @@ export interface IPost{
     }
     images: string;
     registrationDate: string;
+    id:string;
 }
