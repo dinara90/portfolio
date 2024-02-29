@@ -47,7 +47,7 @@ const Data1: FC = () => {
         <div className="App">
             <AccountMenu/>
             <h1>Employee Data</h1>
-            {/* <div>
+            <div>
                 <Line data={chartData}
                     options={{
                         responsive: true,
@@ -76,7 +76,7 @@ const Data1: FC = () => {
                         
                     }}
                 />
-            </div> */}
+            </div>
         </div>
     );
 };
